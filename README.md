@@ -1,4 +1,4 @@
-# The Quartz guide to bad data
+# La guida di Quartz ai dati problematici
 
 **Una guida completa ai problemi riscontrati nei dati dal mondo reale insieme a suggerimenti su come risolverli.**
 
