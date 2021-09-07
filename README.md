@@ -8,52 +8,50 @@ La maggior parte di questi problemi possono essere risolti. Alcuni di questi non
 
 Non è possibile riesaminare tutti i set di dati riscontrati per tutti questi problemi. Se provi a farlo, non pubblicherai mai nulla. Tuttavia, acquisendo familiarità con i tipi di problemi più comuni, si avranno maggiori possibilità di identificare prima un problema.
 
-If you have questions about this guide please email [Chris](mailto:chrisgroskopf@gmail.com). Good luck!
+L'autore originale della guida può essere contattato qui: [Chris](mailto:chrisgroskopf@gmail.com).
 
-This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/). Send your pull requests!
+Questo lavoro è concesso in licenza [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/). Send your pull requests!
 
 # Traduzioni
 
-* [Chinese](http://djchina.org/2016/07/12/bad_data_guide/) (complete)
-* [Chinese](http://cn.gijn.org/2016/01/10/quartz%E5%9D%8F%E6%95%B0%E6%8D%AE%E6%8C%87%E5%8D%97%E7%B2%BE%E9%80%89%EF%BC%9A%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E5%BC%8F%E4%B8%80%E8%A7%88/) (partial)
-* [Japanese](https://github.com/piyo-ko/bad-data-guide/blob/master/README_ja.md)
-* [Portuguese](http://escoladedados.org/2016/09/08/guia-quartz-para-limpeza-de-dados/)
-* [Spanish](http://es.schoolofdata.org/guia-quartz/)
-* [Italian]() (partial)
-
-Want to translate this guide into your language? Go ahead! Email [Chris](mailto:chrisgroskopf@gmail.com) to have your translation added here.
+* [Cinese](http://djchina.org/2016/07/12/bad_data_guide/) (completa)
+* [Cinese](http://cn.gijn.org/2016/01/10/quartz%E5%9D%8F%E6%95%B0%E6%8D%AE%E6%8C%87%E5%8D%97%E7%B2%BE%E9%80%89%EF%BC%9A%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E5%BC%8F%E4%B8%80%E8%A7%88/) (partial)
+* [Giapponese](https://github.com/piyo-ko/bad-data-guide/blob/master/README_ja.md)
+* [Portoghese](http://escoladedados.org/2016/09/08/guia-quartz-para-limpeza-de-dados/)
+* [Spagnolo](http://es.schoolofdata.org/guia-quartz/)
+* [Italiano]() (parziale)
 
 # Indice
 
 ## Problemi nella sorgente
 
-* [Values are missing](#values-are-missing)
-* [Zeros replace missing values](#zeros-replace-missing-values)
-* [Data are missing you know should be there](#data-are-missing-you-know-should-be-there)
-* [Rows or values are duplicated](#rows-or-values-are-duplicated)
-* [Spelling is inconsistent](#spelling-is-inconsistent)
+* [Valori mancanti](#values-are-missing)
+* [Zero sostituiscono valori mancanti](#zeros-replace-missing-values)
+* [Mancano dati che sai che dovrebbero esserci](#data-are-missing-you-know-should-be-there)
+* [Righe o valori duplicati](#rows-or-values-are-duplicated)
+* [Spelling non consistente](#spelling-is-inconsistent)
 * [Name order is inconsistent](#name-order-is-inconsistent)
 * [Date formats are inconsistent](#date-formats-are-inconsistent)
-* [Units are not specified](#units-are-not-specified)
+* [Unità non specificate](#units-are-not-specified)
 * [Categories are badly chosen](#categories-are-badly-chosen)
-* [Field names are ambiguous](#field-names-are-ambiguous)
-* [Provenance is not documented](#provenance-is-not-documented)
-* [Suspicious values are present](#suspicious-values-are-present)
+* [Nomi dei campi ambigui](#field-names-are-ambiguous)
+* [Provenienza non documentata](#provenance-is-not-documented)
+* [Valori sospetti presenti](#suspicious-values-are-present)
 * [Data are too coarse](#data-are-too-coarse)
 * [Totals differ from published aggregates](#totals-differ-from-published-aggregates)
-* [Spreadsheet has 65536 rows](#spreadsheet-has-65536-rows)
-* [Spreadsheet has 255 columns](#spreadsheet-has-255-columns)
-* [Spreadsheet has dates in 1900, 1904, 1969, or 1970](#spreadsheet-has-dates-in-1900-1904-1969-or-1970)
-* [Text has been converted to numbers](#text-has-been-converted-to-numbers)
-* [Numbers have been stored as text](#numbers-have-been-stored-as-text)
+* [Il foglio ha 65536 righe](#spreadsheet-has-65536-rows)
+* [Il foglio ha 255 colonne](#spreadsheet-has-255-columns)
+* [Il foglio ha date nel 1900, 1904, 1969 o 1970](#spreadsheet-has-dates-in-1900-1904-1969-or-1970)
+* [Testo convertito in numeri](#text-has-been-converted-to-numbers)
+* [Numeri salvati come testo](#numbers-have-been-stored-as-text)
 
-## Issues that you should solve
+## Problemi che dovresti risolvere
 
 * [Text is garbled](#text-is-garbled)
 * [Line endings are garbled](#line-endings-are-garbled)
-* [Data are in a PDF](#data-are-in-a-pdf)
+* [I dati sono in un PDF](#data-are-in-a-pdf)
 * [Data are too granular](#data-are-too-granular)
-* [Data were entered by humans](#data-were-entered-by-humans)
+* [Dati inseriti a mano](#data-were-entered-by-humans)
 * [Data are intermingled with formatting and annotations](#data-are-intermingled-with-formatting-and-annotations)
 * [Aggregations were computed on missing values](#aggregations-were-computed-on-missing-values)
 * [Sample is not random](#sample-is-not-random)
@@ -77,98 +75,98 @@ Want to translate this guide into your language? Go ahead! Email [Chris](mailto:
 * [Benford's Law fails](#benfords-law-fails)
 * [Too good to be true](#too-good-to-be-true)
 
-## Issues a programmer should help you solve
+## Problemi dove un programmatore potrebbe aiutarti
 
 * [Data are aggregated to the wrong categories or geographies](#data-are-aggregated-to-the-wrong-categories-or-geographies)
-* [Data are in scanned documents](#data-are-in-scanned-documents)
+* [Dati presenti in documenti scansionati](#data-are-in-scanned-documents)
 
 # Lista dettagliata di tutti i problemi
 
-## Issues that your source should solve
+## Problemi che dovresti risolvere
 
 ### Valori mancanti
 
-Rimuovere valori vuoti o "null" in un datasete a meno che non si ha assoluta certezza del loro significato. Se il dataset contiene dati annui, il valore per quell'anno non è mai stato raccolto? Se è un sondaggio, l'utente si è rifiutato di rispondere alla domanda?
+Rimuovere valori vuoti o _null_ in un dataset a meno che non si ha assoluta certezza del loro significato. Se il dataset contiene dati annui, il valore per quell'anno non è mai stato raccolto? Se è un sondaggio, l'utente si è rifiutato di rispondere alla domanda?
 
 Ogni volta che lavori con dei valori mancanti dovresti chiederti: "So cosa significa la mancanza di questo valore?" Se la risposta è no, dovresti chiedere alla tua fonte.
 
-### Zeros replace missing values
+### Zero sostituiscono valori mancanti
 
 Worse than a missing value is when an arbitrary value is used instead. This can be the result of a human not thinking through the implications or it can happen as the result of automated processes that simply don't know how to handle null values. In any case, if you see zeros in a series of numbers you should ask yourself if those values are really the number `0` or if they instead mean "nothing". (`-1` is also sometimes used this way.) If you aren't sure, ask your source.
 
 The same caution should be exercised for other non-numerical values where a `0` may be represented in another way. For example a false `0` value for a date is often displayed as `1970-01-01T00:00:00Z` or `1969-12-31T24:59:59Z` which is the [Unix epoch for timestamps](https://en.wikipedia.org/wiki/Unix_time#Encoding_time_as_a_number). A false `0` for a location might be represented as `0°00'00.0"N+0°00'00.0"E` or simply `0°N 0°E` which is a point in the Atlantic Ocean just south of Ghana often referred to as [Null Island](https://en.wikipedia.org/wiki/Null_Island).
 
-See also:
+Vedi anche:
 
-* [Suspicious values are present](#suspicious-values-are-present)
-* [Spreadsheet has dates in 1900, 1904, 1969, or 1970](#spreadsheet-has-dates-in-1900-1904-1969-or-1970)
+* [Valori sospetti presenti](#suspicious-values-are-present)
+* [Il foglio ha date nel 1900, 1904, 1969 o 1970](#spreadsheet-has-dates-in-1900-1904-1969-or-1970)
 
-### Data are missing you know should be there
+### Mancano dati che sai che dovrebbero esserci
 
-Sometimes data are missing and you can't tell from the dataset itself, but you can still know because you know what the data purports to be about. If you have a dataset covering the United States then you can check to ensure all 50 states are represented. (And don't forget about [the territories](https://en.wikipedia.org/wiki/Territories_of_the_United_States)—50 isn't the right number if the dataset includes Puerto Rico.) If you're dealing with a dataset of baseball players make sure it has the number of teams you expect. Verify that a few players who you know are included. Trust your intuition if something seems to be missing and double-check with your source. The universe of your data might be smaller than you think.
+A volte mancano i dati e non puoi dire dal DataSet stesso, ma puoi ancora sapere perché sai quali sono i dati per cui si tratta.Se hai un set di dati che copre gli Stati Uniti, è possibile verificare che tutti i 50 stati siano rappresentati. (senza dimenticarsi dei [territori](https://en.wikipedia.org/wiki/Territories_of_the_United_States)—50 non è il numero corretto se il dataset dovrebbe includere anche il Porto Rico.) Se hai a che fare con un set di dati dei giocatori di baseball, assicurati che abbia il numero di team che ti aspetti. Verifica che alcuni giocatori che conosci siano inclusi. Fidati della tua intuizione se qualcosa sembra mancare e prova a ricontrollare con la tua fonte. Non è escluso che l'insieme (detto anche universo) dei tuoi dati potrebbe essere più piccolo di quanto pensi.
 
-### Rows or values are duplicated
+### Righe o valori duplicati
 
-Se la stessa riga appare nel set di dati più di una volta, dovresti scoprire perché. A volte non deve essere una riga intera. Alcuni dati finanziari di una campagna includono "emendamenti" che utilizzano gli stessi identificatori univoci della transazione originale. Se non lo sapessi, qualsiasi calcolo effettuato con i dati sarebbe errato. Se qualcosa sembra che dovrebbe essere unico, verifica che lo sia. Se scopri che non lo è, chiedi alla tua fonte perché.
+Se la stessa riga appare nel set di dati più di una volta, dovresti scoprire il perché. A volte non deve essere una riga intera. Alcuni dati finanziari di una campagna includono "emendamenti" che utilizzano gli stessi identificatori univoci della transazione originale. Se non lo sapessi, qualsiasi calcolo effettuato con i dati sarebbe errato. Se qualcosa sembra che dovrebbe essere unico, verifica che lo sia. Se scopri che non lo è, chiedi alla tua fonte perché.
 
 ### Spelling inconsistente
 
-L'ortografia è uno dei modi più ovvi per dire se i dati sono stati compilati a mano. Non limitarti a guardare i nomi delle persone: quelli sono spesso il posto più difficile per rilevare errori di ortografia. Cerca invece luoghi in cui i nomi o gli stati delle città non sono coerenti. ("Los Angelos" è un errore molto comune.) Se li trovi, puoi essere abbastanza sicuro che i dati sono stati compilati o modificati a mano e questo è sempre un motivo per essere scettici. I dati che sono stati modificati a mano hanno maggiori probabilità di avere errori. Questo non significa che non dovresti usarli, ma potresti dover correggere manualmente quegli errori o comunque tenerne conto nei tuoi rapporti.
+L'ortografia è uno dei modi più ovvi per dire se i dati sono stati compilati a mano. Non limitarti a guardare i nomi delle persone: quelli sono spesso il posto più difficile per rilevare errori di ortografia. Cerca invece i luoghi in cui i nomi delle città non sono coerenti. ("Los Angelos" è un errore molto comune.) Se li trovi, puoi essere abbastanza sicuro che i dati sono stati compilati o modificati a mano e questo è un segnale di cautela. I dati che sono stati modificati a mano hanno maggiori probabilità di avere errori. Questo non significa che non dovresti usarli, ma potresti dover correggere manualmente quegli errori o comunque tenerne conto nei tuoi rapporti.
 
-[OpenRefine's](http://openrefine.org/) ha una funzione di [text clustering](https://github.com/OpenRefine/OpenRefine/wiki/Clustering) can help streamline the spelling correction process by suggesting close matches between inconsistent values within a column (for example, matching `Los Angelos` and `Los Angeles`). Be sure, however, to [document the changes you make](https://github.com/OpenRefine/OpenRefine/wiki/Exporters) so as to ensure [good data provenance](#provenance-is-not-documented).
+[OpenRefine's](http://openrefine.org/) ha una funzione di [text clustering](https://github.com/OpenRefine/OpenRefine/wiki/Clustering) può aiutare a semplificare il processo di correzione ortografico suggerendo partite ravvicinate tra valori inconsistenti all'interno di una colonna (per esempio, armonizzando `Treviso` e `Trevso`). E' importante [documentare i cambiamenti che vengono fatti](https://github.com/OpenRefine/OpenRefine/wiki/Exporters) per assicurare [good data provenance](#provenance-is-not-documented).
 
-See also:
+Vedi anche:
 
-* [Data were entered by humans](#data-were-entered-by-humans)
+* [Dati inseriti a mano](#data-were-entered-by-humans)
 
 ### Name order is inconsistent
 
 Does your data have Middle Eastern or East Asian names in it? Are you sure the surnames are always in the same place? Is it possible anyone in your dataset [uses a mononym](https://en.wikipedia.org/wiki/Indonesian_names#Indonesian_naming_system)? These are the sorts of things that data makers habitually get wrong. If you're working with a list of ethnically diverse names—which is any list of names—then you should do at least a cursory review before assuming that joining the `first_name` and `last_name` columns will give you something that is appropriate to publish.
 
-* [Data were entered by humans](#data-were-entered-by-humans)
+* [Dati inseriti a mano](#data-were-entered-by-humans)
 
 ### Date formats are inconsistent
 
-Which date is in September:
+Quale di queste date è in Settembre?
 
 * `10/9/15`
 * `9/10/15`
 
-If the first one was written by a European and the second one by an American [then they both are](https://en.wikipedia.org/wiki/Date_format_by_country). Without knowing the history of the data you can't know for sure. Know where your data came from and be sure that it was all created by folks from the same continent.
+Se il primo è stato scritto da un europeo e dal secondo da un americano [allora entrambe le date sono in Settembre](https://en.wikipedia.org/wiki/Date_format_by_country). Senza conoscere la storia dei dati che non puoi sapere di sicuro.Sapere da dove provengono i tuoi dati e sii sicuro che fosse tutto creato da gente dello stesso continente.
 
-* [Data were entered by humans](#data-were-entered-by-humans)
-* [Provenance is not documented](#provenance-is-not-documented)
+* [Dati inseriti a mano](#data-were-entered-by-humans)
+* [Provenienza non documentata](#provenance-is-not-documented)
 
-### Units are not specified
+### Unità non specificate
 
 Neither `weight` nor `cost` conveys any information about the unit of measurement. Don't be too quick to assume that data produced within the United States are in units of pounds and dollars. Scientific data are often metric. Foreign prices may be specified in their local currency. If the data do not spell out their units, go back to your source and find out. Even if it does spell out its units always be wary of meanings that may have shifted over time. A dollar in 2010 is not a dollar today. And a [ton](https://en.wikipedia.org/wiki/Short_ton) is not a [ton](https://en.wikipedia.org/wiki/Long_ton) nor a [tonne](https://en.wikipedia.org/wiki/Tonne).
 
-See also:
+Vedi anche:
 
-* [Field names are ambiguous](#field-names-are-ambiguous)
+* [Nomi dei campi ambigui](#field-names-are-ambiguous)
 * [Inflation skews the data](#inflation-skews-the-data)
 
 ### Categories are badly chosen
 
 Watch out for values which purport to be only `true` or `false`, but really aren't. This is often the case with surveys where `refused` or `no answer` are also valid—and meaningful—values. Another common problem is the usage of any kind of `other` category. If the categories in a dataset are a bunch of countries and an `other`, what does that mean? Does it mean that the person collecting the data didn't know the right answer? Were they in international waters? Expatriates? Refugees?
 
-Bad categories can also artificially exclude data. This frequently happens with crime statistics. The FBI has defined the crime of "rape" in a variety of different ways over time. In fact, they've done such a poor job of figuring out what rape is that many criminologists argue their statistics should not be used at all. A bad definition might mean a crime is counted in a different category than you expect or that it wasn't counted at all. Be exceptionally ware of this problem when working with topics where definitions tend to be arbitrary, such as `race` or `ethnicity`.
+Le cattive categorie possono anche escludere artificialmente i dati.Questo spesso accade con le statistiche del crimine.L'FBI ha definito il crimine di "colza" in una varietà di modi diversi nel tempo.In effetti, hanno fatto un tale lavoro povero di capire quale stupro è che molti criminologi sostengono che le loro statistiche non dovrebbero essere affatto utilizzate.Una definizione cattiva potrebbe significare un crimine è contato in una categoria diversa di quanto ti aspetti o che non è stato conteggiato affatto.Essere eccezionalmente articoli di questo problema quando si lavora con gli argomenti in cui le definizioni tendono ad essere arbitrarie, come `razza` e `etnia`.
 
-### Field names are ambiguous
+### Nomi dei campi ambigui
 
 What is a `residence`? Is it where someone lives or where they pay taxes? Is it a city or a county? Field names in data are never as specific as we would like, but particular concern should be applied to those that could obviously mean two or more things. Even if you correctly infer what the values are supposed to mean, that ambiguity could have easily caused the person collecting the data to enter the wrong value.
 
-### Provenance is not documented
+### Provenienza non documentata
 
-Data are created by a variety of kinds of individuals and organizations including businesses, governments, nonprofits and nut-job conspiracy theorists. Data are gathered in many different ways including surveys, sensors and satellites. It may be typed, tapped or scribbled. Knowing where your data came from can give you a huge amount of insight into its limitations.
+I dati sono creati da una varietà di tipi di individui e organizzazioni, comprese le aziende, i governi, i non profit e i teorici della cospirazione del lavoro di noci.I dati sono raccolti in molti modi diversi, inclusi sondaggi, sensori e satelliti.Può essere digitato, toccato o scarabocchiato.Sapendo dove provengono i tuoi dati possono darti una grande quantità di informazioni sui suoi limiti.
 
-Survey data, for example, is rarely exhaustive. Sensors vary in their accuracy. Governments are often disinclined to give you unbiased information. Data from a war zone may have a strong geographical bias due to the danger of crossing battle lines. To make this situation worse, these different sources are often daisy-chained together. Policy analysts frequently redistribute data they got from the government. Data that were written by a doctor may be keyed by a nurse. Every stage in that chain is an opportunity for error. Know where your data came from.
+I dati del sondaggio, ad esempio, sono raramente esaustivi.I sensori variano nella loro precisione.I governi sono spesso inclinati per darti informazioni imparziali.I dati da una zona di guerra possono avere un forte pregiudizio geografico dovuto al pericolo di attraversare le linee di battaglia.Per peggiorare questa situazione, queste diverse fonti sono spesso concatenate daisy.Gli analisti politici ridistribuiscono frequentemente i dati ricevuti dal governo.I dati che sono stati scritti da un medico possono essere cacciati da un'infermiera.Ogni fase in quella catena è un'opportunità per errore.Sapere dove provengono i tuoi dati.
 
-See also:
+Vedi anche:
 
-* [Units are not specified](#units-are-not-specified)
+* [Unità non specificate](#units-are-not-specified)
 
-### Suspicious values are present
+### Valori sospetti presenti
 
 If you see any of these values in your data, treat them with an abundance of caution:
 
@@ -197,21 +195,21 @@ Locations:
 
 Each of these numbers has an indication of a particular error made by either a human or a computer. If you see them, ensure they actually mean what you think they mean!
 
-See also:
+Vedi anche:
 
-* [Spreadsheet has 65536 rows](#spreadsheet-has-65536-rows)
-* [Spreadsheet has 255 columns](#spreadsheet-has-255-columns)
+* [Il foglio ha 65536 righe](#spreadsheet-has-65536-rows)
+* [Il foglio ha 255 colonne](#spreadsheet-has-255-columns)
 * [Spreadsheet has dates in 1900 or 1904](#spreadsheet-has-dates-in-1900-or-1904)
 
 ### Data are too coarse
 
-You've got states and you need counties. You've got employers and you need employees. They gave you years, but you want months. In many cases we get data that have been aggregated too much for our purposes.
+Hai stati stati e hai bisogno di contee. Hai datori di lavoro e hai bisogno di dipendenti. Ti hanno dato anni, ma vuoi mesi. In molti casi otteniamo dati che sono stati aggregati per i nostri scopi.
 
-Data usually cannot be disaggregated once they have been merged together. If you're given data that are too coarse, you'll need to ask your source for something more specific. They may not have it. If they do have it they may not be able or willing to give it to you. There are many federal datasets that can't be accessed at the local level to protect the privacy of individuals who might be uniquely identified by them. (For example, a single Somali national living in western Texas.) All you can do is ask.
+I dati di solito non possono essere disaggregati una volta che sono stati fusi insieme. Se ti vengono dati dati troppo grossolani, dovrai chiedere la tua fonte di qualcosa di più specifico. Potrebbero non averlo. Se ce l'hanno, potrebbero non essere in grado o disposti a darti a te. Ci sono molti set di dati federali che non possono essere accessibili a livello locale per proteggere la privacy di individui che potrebbero essere identificati in modo univoco da loro. (Ad esempio, una singola vita nazionale somalo nel Texas occidentale.) Tutto quello che puoi fare è chiedere.
 
-One thing you should never ever do is divide a yearly value by 12 and call it the "average per month". Without knowing the distribution of the values, that number will be meaningless. (Maybe all instances occurred in one month or one season. Maybe the data follows an exponential trend instead of a linear one.) It's wrong. Don't do it.
+Una cosa che non dovresti mai fare è dividere un valore annuale entro 12 e chiamarlo la "media al mese". Senza conoscere la distribuzione dei valori, quel numero sarà privo di significato. (Forse tutte le istanze si sono verificate in un mese o una stagione. Forse i dati seguono una tendenza esponenziale anziché un lineare.) È sbagliato. Non farlo
 
-See also:
+Vedi anche:
 
 * [Data are too granular](#data-are-too-granular)
 * [Data are aggregated to the wrong categories or geographies](#data-are-aggregated-to-the-wrong-categories-or-geographies)
@@ -222,27 +220,27 @@ Imagine that after a long FOIA fight you receive a "complete" list of incidents 
 
 These sorts of discrepancies between published statistics and raw data can be a very great source of leads. Often the answer will be simple. For instance, the data you were given may not cover the same time period he was speaking about. But sometimes you'll catch them in a lie. Either way, you should make sure the published numbers match the totals for the data you're given.
 
-### Spreadsheet has 65536 rows
+### Il foglio ha 65536 righe
 
-The maximum number of rows an old-fashioned Excel spreadsheet was allowed to have was 65,536. If you receive a dataset with that number of rows you have almost certainly been given truncated data. Go back and ask for the rest. Newer versions of Excel allowed for 1,048,576 rows, so it's less likely you'll be working with data that hits the limit.
+Il numero massimo di righe è stato permesso che un foglio di calcolo eccellente vecchio stile sia stato 65.536.Se si riceve un set di dati con quel numero di righe che hai quasi certamente dato dati troncati.Torna indietro e chiedi il resto.Le versioni più recenti di Excel hanno permesso 1.048.576 righe, quindi è meno probabile che lavorerai con i dati che colpiscono il limite.
 
-### Spreadsheet has 255 columns
+### Il foglio ha 255 colonne
 
-Apple's Numbers app can only handle spreadsheets with 255 columns, and the app will truncate files that have more columns without warning the user. If you receive a dataset with exactly 255 columns, ask if the file was ever opened or converted with Numbers.
+L'app Numbers di Apple può gestire solo i fogli di calcolo con 255 colonne e l'app troncerà i file con più colonne senza avvisare l'utente. Se si riceve un set di dati con esattamente 255 colonne, chiedi se il file è mai stato aperto o convertito con i numeri.
 
-### Spreadsheet has dates in 1900, 1904, 1969, or 1970
+### Il foglio ha date nel 1900, 1904, 1969 o 1970
 
 For reasons beyond obscure, Excel's default date from which it counts all other dates is `January 1st, 1900`, *unless* you're using Excel on a Mac, in which case it's `January 1st, 1904`. There are a variety of ways in which data in Excel can be entered or calculated incorrectly and end up as one of these two dates. If you spot them in your data, it's probably an issue.
 
 Many databases and applications will often generate a date of `1970-01-01T00:00:00Z` or `1969-12-31T23:59:59Z` which is the [Unix epoch for timestamps](https://en.wikipedia.org/wiki/Unix_time#Encoding_time_as_a_number). In other words this is what happens when a system tries to display an empty value or a `0` value as a date.
 
-### Text has been converted to numbers
+### Testo convertito in numeri
 
 Not all numerals are numbers. For instance, the US Census Bureau uses "FIPS codes" to identify every place in the United States. These codes are of various lengths and are numeric. However, they are *not* numbers. `037` is the FIPS code for Los Angeles County. It is not the number `37`. The numerals `37` are, however, a valid FIPS code: for North Carolina. Excel and other spreadsheets will often make the mistake of assuming numerals are numbers and stripping the leading zeros. This can cause all kinds of problems if you try to convert it to another file format or merge it with another dataset. Watch out for data where this has happened before it was given to you.
 
-### Numbers have been stored as text
+### Numeri salvati come testo
 
-When working with spreadsheets, numbers may be stored as text with unwanted formatting. This often happens when a spreadsheet is optimized for presenting data rather than making it available for re-use. For example, instead of representing a million dollars with the number "1000000" a cell might contain the string "1,000,000" or "1 000 000" or "USD 1,000,000" with the formatting of commas, units and spaces entered as characters. Excel can take care of some simple cases with built-in functions, but you'll often need to use formulas to strip out characters until cells are clean enough to be recognized as numbers. Good practice is to store numbers without formatting and to include supporting information in column names or metadata.
+Quando si lavora con fogli di calcolo, i numeri possono essere memorizzati come testo con formattazione indesiderata.Ciò accade spesso quando un foglio di calcolo è ottimizzato per presentare i dati piuttosto che renderlo disponibile per il riutilizzo.Ad esempio, invece di rappresentare un milione di dollari con il numero "1000000" una cella potrebbe contenere la stringa "1.000.000" o "1 000 000 000" o "USD 1.000.000" con la formattazione di virgolette, unità e spazi inseriti come caratteri.Excel può prendersi cura di alcuni semplici casi con funzioni integrate, ma spesso dovrai usare le formule per spogliare i caratteri fino a quando le celle sono abbastanza pulite da essere riconosciute come numeri.Buona pratica è di memorizzare i numeri senza formattazione e includere le informazioni di supporto nei nomi delle colonne o sui metadati.
 
 ## Issues that you should solve
 
@@ -254,15 +252,15 @@ In the vast majority of cases your text editor or spreadsheet application will f
 
 ### Line endings are garbled
 
-All text and "text data" files, such as CSV, use invisible characters to represent the ends of lines. Windows, Mac and Linux computers have historically disagreed about what these line ending characters should be. Attempting to open a file saved on one operating system from another operating system can sometimes cause Excel or other applications to fail to properly identify the line breaks.
+Tutti i file di testo e "Testo", come CSV, utilizzare caratteri invisibili per rappresentare le estremità delle linee.I computer Windows, Mac e Linux hanno storicamente disaccordo su ciò che questi personaggi che terminano la linea dovrebbero essere.Tentativo di aprire un file salvato su un sistema operativo da un altro sistema operativo può a volte causare Excel o altre applicazioni per non identificare correttamente le interruzioni di linea.
 
 Typically, this is easy to resolve by simply opening the file in any general-purpose text editor and re-saving it. If the file is exceptionally large you may need to consider using a command-line tool or enlisting the help of a programmer. You can read more about this issue [here](https://nicercode.github.io/blog/2013-04-30-excel-and-line-endings/).
 
-### Data are in a PDF
+### I dati sono in un PDF
 
 A tremendous amount of data—especially government data—are only available in PDF format. If you have real, textual data inside the PDF then there are several good options for extracting them. (If you've got [scanned documents](#data-are-in-scanned-documents) that's a different problem.) One excellent, free tool is [Tabula](http://tabula.technology/). However, if you have Adobe Creative Cloud then you also have access to Acrobat Pro, which has an excellent feature for exporting tables in PDFs to Excel. Either solution should be able to extract most tabular data from a PDF.
 
-See also:
+Vedi anche:
 
 * [Data are in scanned documents](#data-are-in-scanned-documents)
 
@@ -270,16 +268,16 @@ See also:
 
 This is the opposite of [Data are too coarse](#data-are-too-coarse). In this case you've got counties, but you want states or you've got months but you want years. Fortunately this is usually pretty straightforward.
 
-Data can be aggregated by using the Pivot Table feature of Excel or Google Docs, by using a SQL database or by writing custom code. Pivot Tables are a fabulous tool that every reporter should learn, but they do have their limits. For exceptionally large datasets or aggregations to unusual groups you should ask a programmer and they can craft a solution that's easier to verify and reuse.
+I dati possono essere aggregati utilizzando la funzione TABLE PIVOT di Excel o Google Documenti, utilizzando un database SQL o scrivendo codice personalizzato.I tavoli per pivot sono uno strumento favoloso che ogni reporter dovrebbe imparare, ma hanno i loro limiti.Per set di dati o aggregazioni eccezionalmente grandi a gruppi insoliti dovresti chiedere a un programmatore e possono creare una soluzione più facile da verificare e riutilizzare.
 
-See also:
+Vedi anche:
 
 * [Data are too coarse](#data-are-too-coarse)
 * [Data are aggregated to the wrong categories or geographies](#data-are-aggregated-to-the-wrong-categories-or-geographies).
 
-### Data were entered by humans
+### Dati inseriti a mano
 
-Human data entry is such a common problem that symptoms of it are mentioned in at least 10 of the other issues described here. There is no worse way to screw up data than to let a single human type it in, without validation. For example, I once acquired the complete dog licensing database for Cook County, Illinois. Instead of requiring the person registering their dog to choose a breed from a list, the creators of the system had simply given them a text field to type into. As a result this database contained at least 250 spellings of `Chihuahua`. Even with the best tools available, data this messy can't be saved. They are effectively meaningless. This is not that important with dog data, but you don't want it happening with wounded soldiers or stock tickers. Beware human-entered data.
+L'immissione dei dati umani è un problema così comune che i sintomi di esso sono menzionati in almeno 10 delle altre questioni descritte qui.Non esiste un modo peggiore per avvitare i dati che lasciare un singolo tipo umano in, senza convalida.Ad esempio, ho acquisito una volta il database completo delle licenze per cani per Cook County, Illinois.Invece di richiedere alla persona che registra il loro cane a scegliere una razza da una lista, i creatori del sistema avevano semplicemente dato loro un campo di testo da digitare. Di conseguenza, questo database conteneva almeno 250 ortografie di `Chihuahua`. Anche con i migliori strumenti disponibili, i dati questo disordinato non può essere salvato.Sono efficacemente privi di significato.Questo non è così importante con i dati del cane, ma non vuoi che accada con soldati feriti o ticker azionari.Attenzione ai dati inseriti dall'uomo.
 
 ### Data are intermingled with formatting and annotations
 
@@ -293,16 +291,16 @@ Imagine a dataset with 100 rows and a column called `cost`. In 50 of the rows th
 
 This is an error you can make in your analysis, but it's also an error that others can make and pass on to you, so watch out for it if data comes to you with aggregates already computed.
 
-See also:
+Vedi anche:
 
 * [Values are missing](#values-are-missing)
-* [Zeros replace missing values](#zeros-replace-missing-values)
+* [Zero sostituiscono valori mancanti](#zeros-replace-missing-values)
 
 ### Sample is not random
 
 A non-random sampling error occurs when a survey or other sampled dataset either intentionally or accidentally fails to cover the entire population. This can happen for a variety of reasons ranging from time-of-day to the respondent's native language and is a common source of error in sociological research. It can also happen for less obvious reasons, such as when a researcher thinks they have a complete dataset and chooses to work with only part of it. If the original dataset was incomplete for any reason then any conclusions drawn from their sample will be incorrect. The only thing you can do to fix a non-random sample is avoid using that data.
 
-See also:
+Vedi anche:
 
 * [Sample is biased](#sample-is-biased)
 
@@ -312,7 +310,7 @@ I know of no other single issue that causes more reporting errors than the unref
 
 The first two numbers are safe to report. The third number should never be used in published reporting. There is no one rule about when a number is not accurate enough to use, but as a rule of thumb, you should be cautious about using any number with a MOE over 10%.
 
-See also:
+Vedi anche:
 
 * [Margin-of-error is unknown](#margin-of-error-is-unknown)
 
@@ -320,7 +318,7 @@ See also:
 
 Sometimes the problem isn't that the margin of error is [too large](#margin-of-error-is-too-large), it's that nobody ever bothered to figure out what it was in the first place. This is one problem with unscientific polls. Without computing a MOE, it is impossible to know how accurate the results are. As a general rule, anytime you have data that are from a survey you should ask for what the MOE is. If the source can't tell you, those data probably aren't worth using for any serious analysis.
 
-See also:
+Vedi anche:
 
 * [Margin-of-error is too large](#margin-of-error-is-too-large)
 
@@ -328,7 +326,7 @@ See also:
 
 Like [a sample that is not random](#sample-is-not-random), a biased sample results from a lack of care with how the sampling is executed. Or, from willfully misrepresenting it. A sample might be biased because it was conducted on the internet and poorer people don't use the internet as frequently as the rich. Surveys must be carefully weighted to ensure they cover proportional segments of any population that could skew the results. It's almost impossible to do this perfectly so it is often done wrong.
 
-See also:
+Vedi anche:
 
 * [Sample is not random](#sample-is-not-random)
 
@@ -338,16 +336,16 @@ Manual editing is almost the same problem as [data being entered by humans](#dat
 
 Issues with manual editing are one reason why you always want to ensure your data have [well-documented provenance](#provenance-is-not-documented). A lack of provenance can be a good indication that someone may have monkeyed with it. Academics and policy analysts often get data from the government, monkey with them and then redistribute them to journalists. Without any record of their changes it's impossible to know if the changes they made were justified. Whenever feasible always try to get the *primary source* or at least the earliest version you can and then do your own analysis from that.
 
-See also:
+Vedi anche:
 
-* [Provenance is not documented](#provenance-is-not-documented)
-* [Data were entered by humans](#data-were-entered-by-humans)
+* [Provenienza non documentata](#provenance-is-not-documented)
+* [Dati inseriti a mano](#data-were-entered-by-humans)
 
 ### Inflation skews the data
 
 Currency inflation means that over time money changes in value. There is no way to tell if numbers have been "inflation adjusted" just by looking at them. If you get data and you aren't sure if they have been adjusted then check with your source. If they haven't you'll likely want to perform the adjustment. This [inflation adjuster](http://inflation-adjust.herokuapp.com/) is a good place to start.
 
-See also:
+Vedi anche:
 
 * [Natural/seasonal variation skews the data](#nationalseasonal-variation-skews-the-data)
 
@@ -355,7 +353,7 @@ See also:
 
 Many types of data fluctuate naturally due to some underlying forces. The best known example of this is employment fluctuating with the seasons. Economists have developed a variety of methods of compensating for this variation. The details of those methods aren't particularly important, but it is important that you know if the data you're using have been "seasonally adjusted". If they haven't and you want to compare employment from month to month you will probably want to get adjusted data from your source. (Adjusting them yourself is much harder than with inflation.)
 
-See also:
+Vedi anche:
 
 * [Inflation skews the data](#inflation-skews-the-data)
 
@@ -365,7 +363,7 @@ A source can accidentally or intentionally misrepresent the world by giving you 
 
 If you have data that covers a limited timeframe try to avoid starting your calculations with the very first time period you have data for. If you start a few years (or months or days) into the data you can have confidence that you aren't making a comparison which would be invalidated by having a single additional data point.
 
-See also:
+Vedi anche:
 
 * [Frame of reference has been manipulated](#frame-of-reference-has-been-manipulated)
 
@@ -377,7 +375,7 @@ This also happens when comparing places. If I want to make one country look bad,
 
 This problem tends to crop up in subjects where people have a strong confirmation bias. ("Just as I thought, crime is up!") Whenever possible try comparing rates from several different starting points to see how the numbers shift. And whatever you do, *don't use this technique yourself* to make a point you think is important. That's inexcusable.
 
-See also:
+Vedi anche:
 
 * [Timeframe has been manipulated](#timeframe-has-been-manipulated)
 
@@ -393,15 +391,15 @@ It's very easy for false assumptions, errors or outright falsehoods to be introd
 
 Sometimes the origin story may just be fishy: did such-and-such academic really interview 50 active gang members from the south side of Chicago? If the way the data were gathered seems questionable and your source can't offer you [ironclad provenance](#provenance-is-not-documented) then you should always verify with another expert that the data could reasonably have been collected in the way that was described.
 
-See also:
+Vedi anche:
 
-* [Provenance is not documented](#provenance-is-not-documented)
+* [Provenienza non documentata](#provenance-is-not-documented)
 * [Data assert unrealistic precision](#data-assert-unrealistic-precision)
 * [Too good to be true](#too-good-to-be-true)
 
 ### Data assert unrealistic precision
 
-Outside of hard science, few things are routinely measured with more than two decimal places of accuracy. If a dataset lands on your desk that purports to show a factory's emissions to the 7th decimal place that is a dead giveaway that it was estimated from other values. That in and of itself may not be a problem, but it's important to be transparent about estimates. They are often wrong.
+Al di fuori della dura scienza, poche cose vengono abitualmente misurate con più di due punti decimali di precisione.Se un dataset atterra sulla tua scrivania, pretende di mostrare le emissioni di una fabbrica al 7 ° punto decimale che è un giveaway morto che è stato stimato da altri valori. Quello in e per sé potrebbe non essere un problema, ma è importante essere trasparenti sulle stime. Sono spesso sbagliati.
 
 ### There are inexplicable outliers
 
@@ -413,7 +411,7 @@ As a side-benefit of doing this work, outliers are often a great way to find sto
 
 ### An index masks underlying variation
 
-Analysts who want to follow the trend of an issue often create indices of various values to track progress. There is nothing intrinsically wrong with using an index. They can have great explanatory power. However, it's important to be cautious of indices that combine disparate measures.
+Gli analisti che vogliono seguire la tendenza di un problema spesso creano indici di vari valori per tenere traccia dei progressi.Non c'è nulla di intrinsecamente sbagliato nell'utilizzare un indice.Possono avere un grande potere esplicativo.Tuttavia, è importante essere cauti da indici che combinano misure disparate.
 
 For example, the United Nations [Gender Inequality Index](http://hdr.undp.org/en/content/gender-inequality-index-gii) combines several measures related to women's progress toward equality. One of the measures used in the GII is "representation of women in parliament". Two countries in the world have laws mandating gender representation in their parliaments: China and Pakistan. As a result these two countries perform far better in the index than countries that are similar in all other ways. Is this fair? It doesn't really matter, because it is confusing to anyone who doesn't know about this factor. The GII and similar indices should always be used with careful analysis to ensure their underlying variables don't swing the index in unexpected ways.
 
@@ -421,42 +419,41 @@ For example, the United Nations [Gender Inequality Index](http://hdr.undp.org/en
 
 P-hacking is intentionally altering the data, changing the statistical analysis, or selectively reporting results in order to have statistically significant findings. Examples of this include: stop collecting data once you have a significant result, remove observations to get a significant result, or perform many analyses and only report the few that are significant. There has been some [good reporting](http://fivethirtyeight.com/features/science-isnt-broken) on this problem.
 
-If you're going to publish the results of a study you need to understand what the p-value is, what that means and then make an educated decision about whether the results are worth using. Lots and lots of garbage study results make it into major publications because journalists don't understand p-values.
+Se hai intenzione di pubblicare i risultati di uno studio che devi capire cosa sia il valore P, cosa significa e poi fare una decisione istruita sul fatto che i risultati valga la pena utilizzare.Molti e molti risultati dello studio della spazzatura arrivano nelle principali pubblicazioni perché i giornalisti non capiscono i valori P.
 
-See also:
+Vedi anche:
 
 * [Margin-of-error is too large](#margin-of-error-is-too-large)
 
 ### Benford's Law fails
 
-[Benford's Law](https://en.wikipedia.org/wiki/Benford's_law) is a theory which states that small digits (1, 2, 3) appear at the beginning of numbers much more frequently than large digits (7, 8, 9). In theory Benford's Law can be used to detect anomalies in accounting practices or election results, though in practice it can easily be misapplied. If you suspect a dataset has been created or modified to deceive, Benford's Law is an excellent first test, but you should always verify your results with an expert before concluding your data have been manipulated.
+La [legge di Benford](https://en.wikipedia.org/wiki/Benford's_law) è una teoria che afferma che le piccole cifre (1, 2, 3) appaiono all'inizio dei numeri molto più frequentemente rispetto alle grandi cifre (7, 8, 9). Nella legge di  Benford può essere utilizzata per rilevare anomalie nelle pratiche contabili o nei risultati delle elezioni, anche se in pratica può essere facilmente applicabile.Se si sospetta che un set di dati sia stato creato o modificato per ingannare, la legge di Benford è un eccellente primo test, ma dovresti sempre verificare i tuoi risultati con un esperto prima di concludere i tuoi dati sono stati manipolati.
 
 ### Too good to be true
 
-There is no global dataset of public opinion. Nobody knows the exact number of people living in Siberia. Crime statistics aren't comparable across borders. The US government is not going to tell you how much fissile material it keeps on hand.
+Non esiste un set di dati globale dell'opinione pubblica.Nessuno conosce il numero esatto di persone che vivono in Siberia.Le statistiche del crimine non sono paragonabili ai confini.Il governo degli Stati Uniti non ti dirà quanto materiale fissile mantiene a portata di mano.
 
-Beware any data that purport to represent something that you could not possibly know. It's not data. It's somebody's estimate and it's probably wrong. Then again...it could be a story, so ask an expert to check it out.
-
+Attenzione tutti i dati che pretendono di rappresentare qualcosa che non potevi sapere.Non sono dati.È la stima di qualcuno ed è probabilmente sbagliato.Poi di nuovo ... Potrebbe essere una storia, quindi chiedi a un esperto di verificarlo.
 ## Issues a programmer should help you solve
 
 ### Data are aggregated to the wrong categories or geographies
 
 Sometimes your data are at about the right level of detail (neither [too coarse](#data-are-too-coarse) nor [too granular](#data-are-too-granular)), but they have been aggregated to a different grouping than you want. The classic example of this is data that are aggregated by zip codes that you would prefer to have by city neighborhoods. In many cases this is an impossible problem to solve without getting more granular data from your source, but sometimes the data can be proportionally mapped from one group to another. This must be undertaken only with careful understanding of the [margin-of-error](#margin-of-error-is-too-large) that may be introduced in the process. If you've got data aggregated to the wrong groups, ask a programmer if it is possible to re-aggregate it.
 
-See also:
+Vedi anche:
 
 * [Data are too coarse](#data-are-too-coarse)
 * [Data are too granular](#data-are-too-granular)
 * [Margin-of-error is too large](#margin-of-error-is-too-large)
 
-### Data are in scanned documents
+### Dati presenti in documenti scansionati
 
-Thanks to FOIA laws it is frequently the case that governments are required to give you data—even though they really don't want to. A very common tactic in these cases is for them to give you scans or photographs of the pages. These may be actual image files or, more likely, they will be gathered up into a PDF.
+Grazie alle leggi di FOIA è spesso il caso in cui i governi siano tenuti a darti dati, anche se davvero non vogliono.Una tattica molto comune in questi casi è per loro di darti scansioni o fotografie delle pagine.Questi possono essere file di immagine effettivi o, più probabile, saranno raccolti in un PDF.
 
-It is possible to extract text from images and turn it back into data. This is done through a process called optical-character recognition (OCR). Modern OCR can often be almost 100% accurate, but it very much depends on the nature of the document. Anytime you use OCR to extract data you will want to have a process for validating the results match the original.
+È possibile estrarre il testo dalle immagini e riaccenderlo in dati.Questo è fatto attraverso un processo chiamato riconoscimento ottico-carattere (OCR).L'OCR moderno può spesso essere accurato quasi al 100%, ma molto dipende dalla natura del documento.Ogni volta che usi OCR per estrarre i dati che vorrai avere un processo per convalidare i risultati corrispondano all'originale.
 
-There are many websites you can upload a document to for OCR, but there are also free tools that a programmer may be able to tune for your specific documents. Ask them what the best strategy is for the particular documents you have.
+Ci sono molti siti Web che puoi caricare un documento per per OCR, ma ci sono anche strumenti gratuiti che un programmatore potrebbe essere in grado di sintonizzarsi per i tuoi documenti specifici.Chiedi loro quale sia la migliore strategia per i documenti particolari che hai.
 
-See also:
+Vedi anche:
 
-* [Data are in a PDF](#data-are-in-a-pdf)
+* [I dati sono in un PDF](#data-are-in-a-pdf)
