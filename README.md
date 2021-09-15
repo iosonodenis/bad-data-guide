@@ -31,7 +31,7 @@ Questo lavoro è concesso in licenza [Creative Commons Attribution-NonCommercial
 * [Righe o valori duplicati](#rows-or-values-are-duplicated)
 * [Spelling non consistente](#spelling-is-inconsistent)
 * [Name order is inconsistent](#name-order-is-inconsistent)
-* [Date formats are inconsistent](#date-formats-are-inconsistent)
+* [Formati data incoerenti](#date-formats-are-inconsistent)
 * [Unità non specificate](#units-are-not-specified)
 * [Categories are badly chosen](#categories-are-badly-chosen)
 * [Nomi dei campi ambigui](#field-names-are-ambiguous)
@@ -50,7 +50,7 @@ Questo lavoro è concesso in licenza [Creative Commons Attribution-NonCommercial
 * [Text is garbled](#text-is-garbled)
 * [Line endings are garbled](#line-endings-are-garbled)
 * [I dati sono in un PDF](#data-are-in-a-pdf)
-* [Data are too granular](#data-are-too-granular)
+* [Dati troppo granulari](#data-are-too-granular)
 * [Dati inseriti a mano](#data-were-entered-by-humans)
 * [Data are intermingled with formatting and annotations](#data-are-intermingled-with-formatting-and-annotations)
 * [Aggregations were computed on missing values](#aggregations-were-computed-on-missing-values)
@@ -73,7 +73,7 @@ Questo lavoro è concesso in licenza [Creative Commons Attribution-NonCommercial
 * [An index masks underlying variation](#an-index-masks-underlying-variation)
 * [Results have been p-hacked](#results-have-been-p-hacked)
 * [Benford's Law fails](#benfords-law-fails)
-* [Too good to be true](#too-good-to-be-true)
+* [Troppo bello per essere vero](#too-good-to-be-true)
 
 ## Problemi dove un programmatore potrebbe aiutarti
 
@@ -88,13 +88,13 @@ Questo lavoro è concesso in licenza [Creative Commons Attribution-NonCommercial
 
 Rimuovere valori vuoti o _null_ in un dataset a meno che non si ha assoluta certezza del loro significato. Se il dataset contiene dati annui, il valore per quell'anno non è mai stato raccolto? Se è un sondaggio, l'utente si è rifiutato di rispondere alla domanda?
 
-Ogni volta che lavori con dei valori mancanti dovresti chiederti: "So cosa significa la mancanza di questo valore?" Se la risposta è no, dovresti chiedere alla tua fonte.
+Ogni volta che lavori con dei valori mancanti dovresti chiederti: "So cosa significa la mancanza di questo valore?" Se la risposta è no, dovresti chiedere maggiori informazioni alla tua fonte.
 
-### Zero sostituiscono valori mancanti
+### Zero sostituisce valori mancanti
 
-Worse than a missing value is when an arbitrary value is used instead. This can be the result of a human not thinking through the implications or it can happen as the result of automated processes that simply don't know how to handle null values. In any case, if you see zeros in a series of numbers you should ask yourself if those values are really the number `0` or if they instead mean "nothing". (`-1` is also sometimes used this way.) If you aren't sure, ask your source.
+Peggio di un valore che manca è quando viene utilizzato un valore arbitrario. Questo può essere il risultato di intervento manuale che non ha valutato le implicazioni di quel zero oppure può accadere come il risultato di processi automatizzati che semplicemente non sanno come gestire valori nulli. In ogni caso, se vedi degli zeri in una serie di numeri dovresti chiederti se quei valori sono davvero il numero "0" o se invece significano "niente". (A volte `-1` viene usato in questo modo.) Se non sei sicuro, chiedi alla tua fonte.
 
-The same caution should be exercised for other non-numerical values where a `0` may be represented in another way. For example a false `0` value for a date is often displayed as `1970-01-01T00:00:00Z` or `1969-12-31T24:59:59Z` which is the [Unix epoch for timestamps](https://en.wikipedia.org/wiki/Unix_time#Encoding_time_as_a_number). A false `0` for a location might be represented as `0°00'00.0"N+0°00'00.0"E` or simply `0°N 0°E` which is a point in the Atlantic Ocean just south of Ghana often referred to as [Null Island](https://en.wikipedia.org/wiki/Null_Island).
+La stessa cautela dovrebbe essere esercitata per altri valori non numerici dove uno `0` potrebbe essere rappresentato in un altro modo. Per esempio un falso `0` in una data lo vediamo in `1970-01-01T00:00:00Z` o in `1969-12-31T24:59:59Z` per il [timestamps in Unix](https://en.wikipedia.org/wiki/Unix_time#Encoding_time_as_a_number). Un falso `0` per un luogo potrebbe essere rappresentato da `0°00'00.0"N+0°00'00.0"E` o semplicemente `0°N 0°E`, un punto nell'Oceano Atlantico a sud del Ghana noto come [Null Island](https://en.wikipedia.org/wiki/Null_Island).
 
 Vedi anche:
 
@@ -103,29 +103,29 @@ Vedi anche:
 
 ### Mancano dati che sai che dovrebbero esserci
 
-A volte mancano i dati e non puoi dire dal DataSet stesso, ma puoi ancora sapere perché sai quali sono i dati per cui si tratta.Se hai un set di dati che copre gli Stati Uniti, è possibile verificare che tutti i 50 stati siano rappresentati. (senza dimenticarsi dei [territori](https://en.wikipedia.org/wiki/Territories_of_the_United_States)—50 non è il numero corretto se il dataset dovrebbe includere anche il Porto Rico.) Se hai a che fare con un set di dati dei giocatori di baseball, assicurati che abbia il numero di team che ti aspetti. Verifica che alcuni giocatori che conosci siano inclusi. Fidati della tua intuizione se qualcosa sembra mancare e prova a ricontrollare con la tua fonte. Non è escluso che l'insieme (detto anche universo) dei tuoi dati potrebbe essere più piccolo di quanto pensi.
+A volte mancano dati che, per la tua conoscenza dell'argomento, sai che mancano dal dataset. Se hai un set di dati che copre gli Stati Uniti, è possibile verificare che tutti i 50 stati siano rappresentati. (senza dimenticarsi dei [territori](https://en.wikipedia.org/wiki/Territories_of_the_United_States)—50 non sarebbe il numero corretto se il dataset dovrebbe includere anche il Porto Rico.) Se hai a che fare con un set di dati dei giocatori di calcio, assicurati che abbia il numero di squadre che ti aspetti. Verifica che alcuni giocatori che conosci siano inseriti. Fidati della tua intuizione se qualcosa sembra mancare e prova a ricontrollare con la tua fonte. Non è da escludere che l'insieme (detto anche universo) dei tuoi dati potrebbe essere più piccolo di quanto pensi.
 
 ### Righe o valori duplicati
 
-Se la stessa riga appare nel set di dati più di una volta, dovresti scoprire il perché. A volte non deve essere una riga intera. Alcuni dati finanziari di una campagna includono "emendamenti" che utilizzano gli stessi identificatori univoci della transazione originale. Se non lo sapessi, qualsiasi calcolo effettuato con i dati sarebbe errato. Se qualcosa sembra che dovrebbe essere unico, verifica che lo sia. Se scopri che non lo è, chiedi alla tua fonte perché.
+Se vedi la stessa riga apparire più volte nel dataset, dovresti capirne il motivo. A volte non si tratta di una riga intera. Alcuni dati possono includere "emendamenti" che utilizzano gli stessi identificatori univoci della transazione originale. Se questo viene ignorato, qualsiasi calcolo effettuato con i suddetti sarebbe errato. Se noti qualcosa  dovrebbe essere unico, verifica che effettivamente lo sia, altrimenti verifica con la tua fonte.
 
 ### Spelling inconsistente
 
-L'ortografia è uno dei modi più ovvi per dire se i dati sono stati compilati a mano. Non limitarti a guardare i nomi delle persone: quelli sono spesso il posto più difficile per rilevare errori di ortografia. Cerca invece i luoghi in cui i nomi delle città non sono coerenti. ("Los Angelos" è un errore molto comune.) Se li trovi, puoi essere abbastanza sicuro che i dati sono stati compilati o modificati a mano e questo è un segnale di cautela. I dati che sono stati modificati a mano hanno maggiori probabilità di avere errori. Questo non significa che non dovresti usarli, ma potresti dover correggere manualmente quegli errori o comunque tenerne conto nei tuoi rapporti.
+L'ortografia è uno dei modi più ovvi per capire se i dati sono stati compilati a mano. Non limitarti a guardare i nomi delle persone: quelli sono spesso il posto più difficile per rilevare errori di ortografia. Cerca invece, ad esempio, i luoghi in cui i nomi delle città non sono coerenti. ("Los Angelos" è un errore molto comune.) Se li trovi puoi essere abbastanza sicuro che i dati sono stati compilati o modificati a mano e questo è un segnale di cautela. I dati che sono stati modificati a mano hanno maggiori probabilità di avere errori. Questo non significa che non dovresti usarli, ma potresti dover correggere manualmente quegli errori o comunque tenerne conto nei tuoi rapporti.
 
-[OpenRefine's](http://openrefine.org/) ha una funzione di [text clustering](https://github.com/OpenRefine/OpenRefine/wiki/Clustering) può aiutare a semplificare il processo di correzione ortografico suggerendo partite ravvicinate tra valori inconsistenti all'interno di una colonna (per esempio, armonizzando `Treviso` e `Trevso`). E' importante [documentare i cambiamenti che vengono fatti](https://github.com/OpenRefine/OpenRefine/wiki/Exporters) per assicurare [good data provenance](#provenance-is-not-documented).
+[OpenRefine](http://openrefine.org/) ha una funzione di [text clustering](https://github.com/OpenRefine/OpenRefine/wiki/Clustering) può aiutare a semplificare il processo di correzione ortografico suggerendo partite ravvicinate tra valori inconsistenti all'interno di una colonna (per esempio, armonizzando `Treviso` e `Trevso`). E' importante [documentare i cambiamenti che vengono fatti](https://github.com/OpenRefine/OpenRefine/wiki/Exporters) per fornire una [buona provenienza dei dati](#provenance-is-not-documented).
 
 Vedi anche:
 
 * [Dati inseriti a mano](#data-were-entered-by-humans)
 
-### Name order is inconsistent
+### Ordine dei nomi incoerente
 
-Does your data have Middle Eastern or East Asian names in it? Are you sure the surnames are always in the same place? Is it possible anyone in your dataset [uses a mononym](https://en.wikipedia.org/wiki/Indonesian_names#Indonesian_naming_system)? These are the sorts of things that data makers habitually get wrong. If you're working with a list of ethnically diverse names—which is any list of names—then you should do at least a cursory review before assuming that joining the `first_name` and `last_name` columns will give you something that is appropriate to publish.
+I tuoi dati contengono nomi mediorientali o asiatici? Sei sicuro che i cognomi sono sempre nello stesso posto? Is it possible anyone in your dataset [uses a mononym](https://en.wikipedia.org/wiki/Indonesian_names#Indonesian_naming_system)? These are the sorts of things that data makers habitually get wrong. If you're working with a list of ethnically diverse names—which is any list of names—then you should do at least a cursory review before assuming that joining the `first_name` and `last_name` columns will give you something that is appropriate to publish.
 
 * [Dati inseriti a mano](#data-were-entered-by-humans)
 
-### Date formats are inconsistent
+### Formati data incoerenti
 
 Quale di queste date è in Settembre?
 
@@ -211,7 +211,7 @@ Una cosa che non dovresti mai fare è dividere un valore annuale entro 12 e chia
 
 Vedi anche:
 
-* [Data are too granular](#data-are-too-granular)
+* [Dati troppo granulari](#data-are-too-granular)
 * [Data are aggregated to the wrong categories or geographies](#data-are-aggregated-to-the-wrong-categories-or-geographies)
 
 ### Totals differ from published aggregates
@@ -264,7 +264,7 @@ Vedi anche:
 
 * [Data are in scanned documents](#data-are-in-scanned-documents)
 
-### Data are too granular
+### Dati troppo granulari
 
 This is the opposite of [Data are too coarse](#data-are-too-coarse). In this case you've got counties, but you want states or you've got months but you want years. Fortunately this is usually pretty straightforward.
 
@@ -387,7 +387,7 @@ Sometimes the only data you have are from a source you would rather not rely on.
 
 ### Collection process is opaque
 
-It's very easy for false assumptions, errors or outright falsehoods to be introduced into these data collection processes. For this reason it's important that methods used be transparent. It's rare that you'll know exactly how a dataset was gathered, but indications of a problem can include numbers that [assert unrealistic precision](#data-asserts-unrealistic-precision) and data that [are too good to be true](#too-good-to-be-true).
+It's very easy for false assumptions, errors or outright falsehoods to be introduced into these data collection processes. For this reason it's important that methods used be transparent. It's rare that you'll know exactly how a dataset was gathered, but indications of a problem can include numbers that [assert unrealistic precision](#data-asserts-unrealistic-precision) and data that [are Troppo bello per essere vero](#too-good-to-be-true).
 
 Sometimes the origin story may just be fishy: did such-and-such academic really interview 50 active gang members from the south side of Chicago? If the way the data were gathered seems questionable and your source can't offer you [ironclad provenance](#provenance-is-not-documented) then you should always verify with another expert that the data could reasonably have been collected in the way that was described.
 
@@ -395,7 +395,7 @@ Vedi anche:
 
 * [Provenienza non documentata](#provenance-is-not-documented)
 * [Data assert unrealistic precision](#data-assert-unrealistic-precision)
-* [Too good to be true](#too-good-to-be-true)
+* [Troppo bello per essere vero](#too-good-to-be-true)
 
 ### Data assert unrealistic precision
 
@@ -411,7 +411,7 @@ As a side-benefit of doing this work, outliers are often a great way to find sto
 
 ### An index masks underlying variation
 
-Gli analisti che vogliono seguire la tendenza di un problema spesso creano indici di vari valori per tenere traccia dei progressi.Non c'è nulla di intrinsecamente sbagliato nell'utilizzare un indice.Possono avere un grande potere esplicativo.Tuttavia, è importante essere cauti da indici che combinano misure disparate.
+Gli analisti che vogliono seguire la tendenza di un problema spesso creano indici di vari valori per tenere traccia dei progressi. Non c'è nulla di intrinsecamente sbagliato nell'utilizzare un indice. Possono avere un grande potere esplicativo.Tuttavia è importante esercitare cautela su indici che combinano misure disparate.
 
 For example, the United Nations [Gender Inequality Index](http://hdr.undp.org/en/content/gender-inequality-index-gii) combines several measures related to women's progress toward equality. One of the measures used in the GII is "representation of women in parliament". Two countries in the world have laws mandating gender representation in their parliaments: China and Pakistan. As a result these two countries perform far better in the index than countries that are similar in all other ways. Is this fair? It doesn't really matter, because it is confusing to anyone who doesn't know about this factor. The GII and similar indices should always be used with careful analysis to ensure their underlying variables don't swing the index in unexpected ways.
 
@@ -419,7 +419,7 @@ For example, the United Nations [Gender Inequality Index](http://hdr.undp.org/en
 
 P-hacking is intentionally altering the data, changing the statistical analysis, or selectively reporting results in order to have statistically significant findings. Examples of this include: stop collecting data once you have a significant result, remove observations to get a significant result, or perform many analyses and only report the few that are significant. There has been some [good reporting](http://fivethirtyeight.com/features/science-isnt-broken) on this problem.
 
-Se hai intenzione di pubblicare i risultati di uno studio che devi capire cosa sia il valore P, cosa significa e poi fare una decisione istruita sul fatto che i risultati valga la pena utilizzare.Molti e molti risultati dello studio della spazzatura arrivano nelle principali pubblicazioni perché i giornalisti non capiscono i valori P.
+Se hai intenzione di pubblicare i risultati di uno studio che devi capire cosa sia il valore P, cosa significa e poi fare una decisione istruita sul fatto che i risultati valga la pena utilizzare. Molti e molti risultati dello studio della spazzatura arrivano nelle principali pubblicazioni perché i giornalisti non capiscono i valori P.
 
 Vedi anche:
 
@@ -429,12 +429,13 @@ Vedi anche:
 
 La [legge di Benford](https://en.wikipedia.org/wiki/Benford's_law) è una teoria che afferma che le piccole cifre (1, 2, 3) appaiono all'inizio dei numeri molto più frequentemente rispetto alle grandi cifre (7, 8, 9). Nella legge di  Benford può essere utilizzata per rilevare anomalie nelle pratiche contabili o nei risultati delle elezioni, anche se in pratica può essere facilmente applicabile.Se si sospetta che un set di dati sia stato creato o modificato per ingannare, la legge di Benford è un eccellente primo test, ma dovresti sempre verificare i tuoi risultati con un esperto prima di concludere i tuoi dati sono stati manipolati.
 
-### Too good to be true
+### Troppo bello per essere vero
 
-Non esiste un set di dati globale dell'opinione pubblica.Nessuno conosce il numero esatto di persone che vivono in Siberia.Le statistiche del crimine non sono paragonabili ai confini.Il governo degli Stati Uniti non ti dirà quanto materiale fissile mantiene a portata di mano.
+Non esiste un set di dati globale dell'opinione pubblica. Nessuno conosce il numero esatto di persone che vivono in Siberia. Le statistiche del crimine non sono paragonabili ai confini. Il governo degli Stati Uniti non ti dirà quanto materiale fissile mantiene a portata di mano.
 
-Attenzione tutti i dati che pretendono di rappresentare qualcosa che non potevi sapere.Non sono dati.È la stima di qualcuno ed è probabilmente sbagliato.Poi di nuovo ... Potrebbe essere una storia, quindi chiedi a un esperto di verificarlo.
-## Issues a programmer should help you solve
+Attenzione a tutti i dati che pretendono di rappresentare qualcosa che non si può pubblicamente sapere. Non sono dati ma la stime di qualcuno, probabilmente sbagliata. Nel dubbio chiedi a un esperto del settore di verificarlo.
+
+## Problemi risolvibili da un programmatore
 
 ### Data are aggregated to the wrong categories or geographies
 
@@ -443,16 +444,16 @@ Sometimes your data are at about the right level of detail (neither [too coarse]
 Vedi anche:
 
 * [Data are too coarse](#data-are-too-coarse)
-* [Data are too granular](#data-are-too-granular)
+* [Dati troppo granulari](#data-are-too-granular)
 * [Margin-of-error is too large](#margin-of-error-is-too-large)
 
 ### Dati presenti in documenti scansionati
 
-Grazie alle leggi di FOIA è spesso il caso in cui i governi siano tenuti a darti dati, anche se davvero non vogliono.Una tattica molto comune in questi casi è per loro di darti scansioni o fotografie delle pagine.Questi possono essere file di immagine effettivi o, più probabile, saranno raccolti in un PDF.
+Grazie agli open-data spesso governi ed enti pubblici sono tenuti a fornirti dati, anche se non vogliono. Una tattica molto comune da quest'ultimi per ostacolare è di fornire scansioni o fotografie delle pagine. Questi possono essere file di immagine o, più probabile, dei PDF.
 
-È possibile estrarre il testo dalle immagini e riaccenderlo in dati.Questo è fatto attraverso un processo chiamato riconoscimento ottico-carattere (OCR).L'OCR moderno può spesso essere accurato quasi al 100%, ma molto dipende dalla natura del documento.Ogni volta che usi OCR per estrarre i dati che vorrai avere un processo per convalidare i risultati corrispondano all'originale.
+È possibile estrarre il testo dalle immagini e convertirlo in dati. Questo è fatto attraverso un processo chiamato riconoscimento ottico-carattere (OCR). I software attuali possono essere accurati quasi al 100%, ma molto dipende dalla natura del documento. Ogni volta che usi un OCR per estrarre dei dati è consigliabile verificare che i risultati corrispondano all'originale.
 
-Ci sono molti siti Web che puoi caricare un documento per per OCR, ma ci sono anche strumenti gratuiti che un programmatore potrebbe essere in grado di sintonizzarsi per i tuoi documenti specifici.Chiedi loro quale sia la migliore strategia per i documenti particolari che hai.
+Ci sono molti siti Web dove puoi caricare un documento per far fare il riconoscimento dei dati, ma ci sono anche strumenti gratuiti che un programmatore potrebbe essere in grado di utilizzare nei tuoi documenti specifici. Chiedi a loro quale sia la migliore strategia per i documenti che hai.
 
 Vedi anche:
 
